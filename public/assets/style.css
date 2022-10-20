@@ -1,0 +1,17 @@
+.todo{
+    background-color: #2564cf;
+    color: whitesmoke;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    box-shadow: 0 0 2px 2px black;
+}
+
+.list-group{
+    margin-top: 10px;
+}
+
+.list-group :nth-child(odd){
+    background: #82b9e8;
+}
