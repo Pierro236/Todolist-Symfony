@@ -2,22 +2,12 @@ version: '3'
 
 services:
 ###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-14}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    volumes:
-      - db-data:/var/lib/postgresql/data:rw
-
   app:
-    image: sha256:ca2f1e4bb0901f8dc2edf5753ec4b0c0b7f8d47c26fb8e7e6a0272cbee5d1672
+    container_name: todolist-symfony
+    image: sha256:0070a3d08bf3bb7ee56ce151d12f94254412993ae088d5f43bfaeef620eb392f
     ports:
       - "8080:80"
-    environment:
-      DATABASE_URL: postgres://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database:5432/${POSTGRES_DB:-app}
+
 
 
 volumes:

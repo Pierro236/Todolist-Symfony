@@ -18,7 +18,7 @@ RUN cd /var/www && \
     npm install --force
 
 WORKDIR /var/www/
-#/var/www/var/cache/dev/profiler
+#clear cache and log
 RUN chown -R www-data:www-data var/cache && \
     chown -R www-data:www-data var/log
 
