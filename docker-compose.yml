@@ -11,11 +11,14 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-app}
     volumes:
       - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+
+  app:
+    image: sha256:ca2f1e4bb0901f8dc2edf5753ec4b0c0b7f8d47c26fb8e7e6a0272cbee5d1672
+    ports:
+      - "8080:80"
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database:5432/${POSTGRES_DB:-app}
+
 
 volumes:
-###> doctrine/doctrine-bundle ###
   db-data:
-###< doctrine/doctrine-bundle ###
