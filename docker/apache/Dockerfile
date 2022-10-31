@@ -1,4 +1,4 @@
-FROM httpd:alpine3.16
+FROM httpd:alpine
 RUN apk update; \
     apk upgrade;
 
@@ -10,7 +10,7 @@ COPY myhttpd.conf /usr/local/apache2/conf/myhttpd.conf
 RUN echo "Include /usr/local/apache2/conf/myhttpd.conf" \
     >> /usr/local/apache2/conf/httpd.conf
 
-EXPOSE 8000
+EXPOSE 80
 
 CMD /usr/local/apache2/bin/httpd -D FOREGROUND
 

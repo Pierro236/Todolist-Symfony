@@ -1,14 +1,35 @@
 version: '3'
-
 services:
-###> doctrine/doctrine-bundle ###
-  app:
-    container_name: todolist-symfony
-    image: sha256:0070a3d08bf3bb7ee56ce151d12f94254412993ae088d5f43bfaeef620eb392f
+  apache:
+    container_name: apache_server
+    image: apache:latest
+    depends_on:
+      - phpfpm
+      - db
     ports:
       - "8080:80"
+    volumes:
+      - ./:/var/www
+      
 
 
-
-volumes:
-  db-data:
+  phpfpm:
+    container_name: app_symfony
+    image: app_symfony
+    expose:
+      - 9000
+    volumes:
+      - ./:/var/www
+    
+  db:
+    container_name: mariadb
+    image: mariadb
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: database
